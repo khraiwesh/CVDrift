@@ -1,0 +1,6 @@
+numpy
+pandas
+matplotlib
+ruptures
+python-dateutil
+pm4py
