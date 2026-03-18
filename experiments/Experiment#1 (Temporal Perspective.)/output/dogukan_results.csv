@@ -1,0 +1,69 @@
+Algorithm,Log Source,Log,Drift Types,Detected Changepoints,Actual Changepoints for Log,Duration (Seconds),Duration (hh:mm:ss),Parameter Settings
+CVDriftSuggested,dataset_1000cases_10min_ABD.xes,dataset_1000cases_10min_ABD.xes,duration,"[370, 750]",[],2.984,00:00:02,{}
+CVDriftSuggested,dataset_1000cases_10min_ABD_noisy_10%.xes,dataset_1000cases_10min_ABD_noisy_10%.xes,duration,"[304, 722]",[],3.577,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_10min_ABD_noisy_20%.xes,dataset_1000cases_10min_ABD_noisy_20%.xes,duration,"[300, 722]",[],4.451,00:00:04,{}
+CVDriftSuggested,dataset_1000cases_10min_ABD_noisy_5%.xes,dataset_1000cases_10min_ABD_noisy_5%.xes,duration,"[303, 722]",[],3.319,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_20min_ABD.xes,dataset_1000cases_20min_ABD.xes,duration,"[370, 750]",[],2.969,00:00:02,{}
+CVDriftSuggested,dataset_1000cases_20min_ABD_noisy_10%.xes,dataset_1000cases_20min_ABD_noisy_10%.xes,duration,"[302, 725]",[],3.628,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_20min_ABD_noisy_20%.xes,dataset_1000cases_20min_ABD_noisy_20%.xes,duration,"[304, 725]",[],4.346,00:00:04,{}
+CVDriftSuggested,dataset_1000cases_20min_ABD_noisy_5%.xes,dataset_1000cases_20min_ABD_noisy_5%.xes,duration,"[304, 725]",[],3.228,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_30min_ABD.xes,dataset_1000cases_30min_ABD.xes,duration,"[370, 750]",[],3.252,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_30min_ABD_noisy_10%.xes,dataset_1000cases_30min_ABD_noisy_10%.xes,duration,"[303, 722]",[],3.593,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_30min_ABD_noisy_20%.xes,dataset_1000cases_30min_ABD_noisy_20%.xes,duration,"[300, 723]",[],4.16,00:00:04,{}
+CVDriftSuggested,dataset_1000cases_30min_ABD_noisy_5%.xes,dataset_1000cases_30min_ABD_noisy_5%.xes,duration,"[305, 723]",[],3.201,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_40min_ABD.xes,dataset_1000cases_40min_ABD.xes,duration,"[370, 750]",[],3.273,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_40min_ABD_noisy_10%.xes,dataset_1000cases_40min_ABD_noisy_10%.xes,duration,"[302, 724]",[],4.035,00:00:04,{}
+CVDriftSuggested,dataset_1000cases_40min_ABD_noisy_20%.xes,dataset_1000cases_40min_ABD_noisy_20%.xes,duration,"[303, 724]",[],5.092,00:00:05,{}
+CVDriftSuggested,dataset_1000cases_40min_ABD_noisy_5%.xes,dataset_1000cases_40min_ABD_noisy_5%.xes,duration,"[302, 718]",[],3.29,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_50min_ABD.xes,dataset_1000cases_50min_ABD.xes,duration,"[370, 750]",[],3.815,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_50min_ABD_noisy_10%.xes,dataset_1000cases_50min_ABD_noisy_10%.xes,duration,"[301, 726]",[],3.502,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_50min_ABD_noisy_20%.xes,dataset_1000cases_50min_ABD_noisy_20%.xes,duration,"[305, 731]",[],4.231,00:00:04,{}
+CVDriftSuggested,dataset_1000cases_50min_ABD_noisy_5%.xes,dataset_1000cases_50min_ABD_noisy_5%.xes,duration,"[301, 725]",[],3.145,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_60min_ABD.xes,dataset_1000cases_60min_ABD.xes,duration,"[370, 750]",[],2.86,00:00:02,{}
+CVDriftSuggested,dataset_1000cases_60min_ABD_noisy_10%.xes,dataset_1000cases_60min_ABD_noisy_10%.xes,duration,"[300, 726]",[],3.472,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_60min_ABD_noisy_20%.xes,dataset_1000cases_60min_ABD_noisy_20%.xes,duration,"[300, 724]",[],4.267,00:00:04,{}
+CVDriftSuggested,dataset_1000cases_60min_ABD_noisy_5%.xes,dataset_1000cases_60min_ABD_noisy_5%.xes,duration,"[300, 725]",[],3.095,00:00:03,{}
+CVDriftSuggested,dataset_100cases_10min_ABD.xes,dataset_100cases_10min_ABD.xes,duration,"[35, 75]",[],0.234,00:00:00,{}
+CVDriftSuggested,dataset_100cases_10min_ABD_noisy_10%.xes,dataset_100cases_10min_ABD_noisy_10%.xes,duration,"[35, 74]",[],0.227,00:00:00,{}
+CVDriftSuggested,dataset_100cases_10min_ABD_noisy_20%.xes,dataset_100cases_10min_ABD_noisy_20%.xes,duration,[35],[],0.232,00:00:00,{}
+CVDriftSuggested,dataset_100cases_10min_ABD_noisy_5%.xes,dataset_100cases_10min_ABD_noisy_5%.xes,duration,"[35, 76]",[],0.217,00:00:00,{}
+CVDriftSuggested,dataset_100cases_20min_ABD.xes,dataset_100cases_20min_ABD.xes,duration,"[45, 77]",[],0.233,00:00:00,{}
+CVDriftSuggested,dataset_100cases_20min_ABD_noisy_10%.xes,dataset_100cases_20min_ABD_noisy_10%.xes,duration,[75],[],0.226,00:00:00,{}
+CVDriftSuggested,dataset_100cases_20min_ABD_noisy_20%.xes,dataset_100cases_20min_ABD_noisy_20%.xes,duration,"[77, 90]",[],0.269,00:00:00,{}
+CVDriftSuggested,dataset_100cases_20min_ABD_noisy_5%.xes,dataset_100cases_20min_ABD_noisy_5%.xes,duration,"[75, 90]",[],0.225,00:00:00,{}
+CVDriftSuggested,dataset_100cases_30min_ABD.xes,dataset_100cases_30min_ABD.xes,duration,[35],[],0.237,00:00:00,{}
+CVDriftSuggested,dataset_100cases_30min_ABD_noisy_10%.xes,dataset_100cases_30min_ABD_noisy_10%.xes,duration,[30],[],0.233,00:00:00,{}
+CVDriftSuggested,dataset_100cases_30min_ABD_noisy_20%.xes,dataset_100cases_30min_ABD_noisy_20%.xes,duration,[31],[],0.241,00:00:00,{}
+CVDriftSuggested,dataset_100cases_30min_ABD_noisy_5%.xes,dataset_100cases_30min_ABD_noisy_5%.xes,duration,"[31, 75]",[],0.217,00:00:00,{}
+CVDriftSuggested,dataset_100cases_40min_ABD.xes,dataset_100cases_40min_ABD.xes,duration,[35],[],0.207,00:00:00,{}
+CVDriftSuggested,dataset_100cases_40min_ABD_noisy_10%.xes,dataset_100cases_40min_ABD_noisy_10%.xes,duration,[31],[],0.221,00:00:00,{}
+CVDriftSuggested,dataset_100cases_40min_ABD_noisy_20%.xes,dataset_100cases_40min_ABD_noisy_20%.xes,duration,[32],[],0.231,00:00:00,{}
+CVDriftSuggested,dataset_100cases_40min_ABD_noisy_5%.xes,dataset_100cases_40min_ABD_noisy_5%.xes,duration,[30],[],0.229,00:00:00,{}
+CVDriftSuggested,dataset_100cases_50min_ABD.xes,dataset_100cases_50min_ABD.xes,duration,"[37, 75]",[],0.203,00:00:00,{}
+CVDriftSuggested,dataset_100cases_50min_ABD_noisy_10%.xes,dataset_100cases_50min_ABD_noisy_10%.xes,duration,"[30, 73]",[],0.212,00:00:00,{}
+CVDriftSuggested,dataset_100cases_50min_ABD_noisy_20%.xes,dataset_100cases_50min_ABD_noisy_20%.xes,duration,"[35, 72]",[],0.242,00:00:00,{}
+CVDriftSuggested,dataset_100cases_50min_ABD_noisy_5%.xes,dataset_100cases_50min_ABD_noisy_5%.xes,duration,"[35, 82]",[],0.211,00:00:00,{}
+CVDriftSuggested,dataset_100cases_60min_ABD.xes,dataset_100cases_60min_ABD.xes,duration,[35],[],0.231,00:00:00,{}
+CVDriftSuggested,dataset_100cases_60min_ABD_noisy_10%.xes,dataset_100cases_60min_ABD_noisy_10%.xes,duration,"[35, 72]",[],0.218,00:00:00,{}
+CVDriftSuggested,dataset_100cases_60min_ABD_noisy_20%.xes,dataset_100cases_60min_ABD_noisy_20%.xes,duration,"[30, 71]",[],0.239,00:00:00,{}
+CVDriftSuggested,dataset_100cases_60min_ABD_noisy_5%.xes,dataset_100cases_60min_ABD_noisy_5%.xes,duration,"[35, 72]",[],0.211,00:00:00,{}
+CVDriftSuggested,dataset_3000cases10min_ABD.xes,dataset_3000cases10min_ABD.xes,duration,"[1110, 2250]",[],12.708,00:00:12,{}
+CVDriftSuggested,dataset_3000cases20min_ABD.xes,dataset_3000cases20min_ABD.xes,duration,"[1110, 2250]",[],13.467,00:00:13,{}
+CVDriftSuggested,dataset_3000cases20min_ABD_noisy_10%.xes,dataset_3000cases20min_ABD_noisy_10%.xes,duration,"[125, 2225]",[],18.081,00:00:18,{}
+CVDriftSuggested,dataset_3000cases20min_ABD_noisy_20%.xes,dataset_3000cases20min_ABD_noisy_20%.xes,duration,"[125, 2226]",[],24.521,00:00:24,{}
+CVDriftSuggested,dataset_3000cases30min_ABD.xes,dataset_3000cases30min_ABD.xes,duration,"[1110, 2250]",[],12.511,00:00:12,{}
+CVDriftSuggested,dataset_3000cases30min_ABD_noisy_10%.xes,dataset_3000cases30min_ABD_noisy_10%.xes,duration,"[126, 2220]",[],16.849,00:00:16,{}
+CVDriftSuggested,dataset_3000cases30min_ABD_noisy_20%.xes,dataset_3000cases30min_ABD_noisy_20%.xes,duration,"[125, 2227]",[],25.151,00:00:25,{}
+CVDriftSuggested,dataset_3000cases30min_ABD_noisy_5%.xes,dataset_3000cases30min_ABD_noisy_5%.xes,duration,"[125, 2220]",[],16.604,00:00:16,{}
+CVDriftSuggested,dataset_3000cases40min_ABD.xes,dataset_3000cases40min_ABD.xes,duration,"[1110, 2250]",[],11.955,00:00:11,{}
+CVDriftSuggested,dataset_3000cases40min_ABD_noisy_10%.xes,dataset_3000cases40min_ABD_noisy_10%.xes,duration,"[126, 2222]",[],17.033,00:00:17,{}
+CVDriftSuggested,dataset_3000cases40min_ABD_noisy_20%.xes,dataset_3000cases40min_ABD_noisy_20%.xes,duration,"[126, 2224]",[],22.614,00:00:22,{}
+CVDriftSuggested,dataset_3000cases40min_ABD_noisy_5%.xes,dataset_3000cases40min_ABD_noisy_5%.xes,duration,"[126, 2220]",[],14.714,00:00:14,{}
+CVDriftSuggested,dataset_3000cases50min_ABD.xes,dataset_3000cases50min_ABD.xes,duration,"[1110, 2250]",[],12.872,00:00:12,{}
+CVDriftSuggested,dataset_3000cases50min_ABD_noisy_10%.xes,dataset_3000cases50min_ABD_noisy_10%.xes,duration,"[125, 2223]",[],18.249,00:00:18,{}
+CVDriftSuggested,dataset_3000cases50min_ABD_noisy_20%.xes,dataset_3000cases50min_ABD_noisy_20%.xes,duration,"[125, 2225]",[],24.475,00:00:24,{}
+CVDriftSuggested,dataset_3000cases50min_ABD_noisy_5%.xes,dataset_3000cases50min_ABD_noisy_5%.xes,duration,"[125, 2226]",[],13.918,00:00:13,{}
+CVDriftSuggested,dataset_3000cases60min_ABD.xes,dataset_3000cases60min_ABD.xes,duration,"[1110, 2250]",[],12.368,00:00:12,{}
+CVDriftSuggested,dataset_3000cases60min_ABD_noisy_10%.xes,dataset_3000cases60min_ABD_noisy_10%.xes,duration,"[126, 2220]",[],17.516,00:00:17,{}
+CVDriftSuggested,dataset_3000cases60min_ABD_noisy_20%.xes,dataset_3000cases60min_ABD_noisy_20%.xes,duration,"[126, 2223]",[],24.037,00:00:24,{}
+CVDriftSuggested,dataset_3000cases60min_ABD_noisy_5%.xes,dataset_3000cases60min_ABD_noisy_5%.xes,duration,"[127, 2220]",[],15.2,00:00:15,{}
