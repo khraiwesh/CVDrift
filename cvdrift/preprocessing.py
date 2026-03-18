@@ -47,8 +47,11 @@ def params_for_drift(drift_type: str, overrides: Optional[Dict[str, Any]] = None
     params = merge_params(overrides)
     drift_type = drift_type.lower().strip()
     if drift_type == "routing":
-        params["pen_scale"] = 7
-        params["min_effect_size"] = 0.15
+        # Keep historical routing defaults unless caller explicitly overrides.
+        if not overrides or "pen_scale" not in overrides:
+            params["pen_scale"] = 7
+        if not overrides or "min_effect_size" not in overrides:
+            params["min_effect_size"] = 0.15
     elif drift_type == "duration":
         params["pen_scale"] = 5
         params["min_effect_size"] = 0

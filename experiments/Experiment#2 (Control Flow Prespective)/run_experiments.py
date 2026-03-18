@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import argparse
 import ast
+import csv
 import json
 import os
 import re
 import sys
+import time
 from typing import Dict, Iterable, List, Optional
 
 import pandas as pd
@@ -27,8 +29,8 @@ def _n_cases_from_name(file_name: str) -> Optional[int]:
     return int(match.group(1)) if match else None
 
 
-def _gt_samira(n_cases: int) -> List[int]:
-    return [round(0.37 * n_cases), round(0.75 * n_cases)]
+def _gt_bose(_: int) -> List[int]:
+    return [1199, 2399, 3599, 4799]
 
 
 
@@ -40,8 +42,8 @@ def _gt_ostovar(_: int) -> List[int]:
     return [999, 1999]
 
 
-GT_MODES = {
-    "samira": _gt_samira,
+GT_RESOLVERS = {
+    "bose": _gt_bose,
     "ceravolo": _gt_ceravolo,
     "ostovar": _gt_ostovar,
 }
@@ -162,6 +164,118 @@ def _ground_truth_for_log(log_path: str) -> List[int]:
     if source == "ceravolo":
         return _gt_ceravolo(n_cases)
 
+    if source == "bose":
+        return _gt_bose(n_cases)
+
+    return []
+
+
+def _export_requested_excel(csv_path: str, out_xlsx: str) -> str:
+    frame = pd.read_csv(csv_path)
+    if frame.empty:
+        report = pd.DataFrame(
+            columns=[
+                "Algorithm name",
+                "Log name",
+                "Detected points",
+                "Actual points (GT)",
+                "Runtime (Seconds)",
+            ]
+        )
+    else:
+        report = pd.DataFrame(
+            {
+                "Algorithm name": ["CVDrift"] * len(frame),
+                "Log name": frame.get("Log", "").astype(str),
+                "Detected points": frame.get("Detected Changepoints", "[]").astype(str),
+                "Actual points (GT)": frame.get("Actual Changepoints for Log", "[]").astype(str),
+                "Runtime (Seconds)": frame.get("Duration (Seconds)", 0.0),
+            }
+        )
+
+    out_xlsx = os.path.abspath(out_xlsx)
+    os.makedirs(os.path.dirname(out_xlsx), exist_ok=True)
+    report.to_excel(out_xlsx, index=False)
+    return out_xlsx
+
+
+def _fmt_time(seconds: float) -> str:
+    hours, remainder = divmod(int(seconds), 3600)
+    minutes, secs = divmod(remainder, 60)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}"
+
+
+def _append_csv_row(csv_path: str, row: Dict[str, object]) -> None:
+    fields = [
+        "Algorithm",
+        "Log Source",
+        "Log",
+        "Drift Types",
+        "Detected Changepoints",
+        "Actual Changepoints for Log",
+        "Duration (Seconds)",
+        "Duration (hh:mm:ss)",
+        "Parameter Settings",
+    ]
+    write_header = not os.path.exists(csv_path)
+    with open(csv_path, "a", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        if write_header:
+            writer.writeheader()
+        writer.writerow(row)
+
+
+def _single_result_row(log_path: str, drift_types: Iterable[str], params: Dict, quiet: bool = False) -> Dict[str, object]:
+    from cvdrift.drift_detection import extract_cps, run_pipeline
+    from cvdrift.preprocessing import load_log
+
+    start_time = time.time()
+    df = load_log(log_path)
+    results = run_pipeline(df, drift_types, params=params, quiet=quiet)
+    cps = extract_cps(results)
+    elapsed = time.time() - start_time
+    return {
+        "Algorithm": "CVDrift",
+        "Log Source": os.path.basename(log_path),
+        "Log": os.path.basename(log_path),
+        "Drift Types": ", ".join(drift_types),
+        "Detected Changepoints": str(cps),
+        "Actual Changepoints for Log": "[]",
+        "Duration (Seconds)": round(elapsed, 3),
+        "Duration (hh:mm:ss)": _fmt_time(elapsed),
+        "Parameter Settings": json.dumps(params, default=str),
+    }
+
+
+def _run_batch_local(log_paths: List[str], out_path: str, drift_types: Iterable[str], params: Dict, quiet: bool = False) -> str:
+    csv_path = os.path.abspath(out_path)
+    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+    if os.path.exists(csv_path):
+        os.remove(csv_path)
+
+    print(f"Processing {len(log_paths)} log(s) -> {csv_path}")
+    for index, log_path in enumerate(log_paths, start=1):
+        print(f"[{index}/{len(log_paths)}] {os.path.basename(log_path)}")
+        try:
+            row = _single_result_row(log_path, drift_types, params, quiet=quiet)
+        except Exception as exc:
+            elapsed = 0.0
+            row = {
+                "Algorithm": "CVDrift",
+                "Log Source": os.path.basename(log_path),
+                "Log": os.path.basename(log_path),
+                "Drift Types": ", ".join(drift_types),
+                "Detected Changepoints": "ERROR",
+                "Actual Changepoints for Log": "[]",
+                "Duration (Seconds)": elapsed,
+                "Duration (hh:mm:ss)": _fmt_time(elapsed),
+                "Parameter Settings": json.dumps({"error": str(exc)}),
+            }
+            print(f"  ERROR: {exc}")
+        _append_csv_row(csv_path, row)
+    print(f"Batch complete. Results: {csv_path}")
+    return csv_path
+
    
 
 
@@ -171,7 +285,7 @@ def _augment_results_with_ground_truth(csv_path: str, files: List[str]) -> str:
         return csv_path
 
     actual_values: List[str] = []
-    gt_mode_values: List[str] = []
+    dataset_values: List[str] = []
     n_case_values: List[Optional[int]] = []
 
     for index, _ in frame.iterrows():
@@ -188,10 +302,10 @@ def _augment_results_with_ground_truth(csv_path: str, files: List[str]) -> str:
             n_cases = None
 
         actual_values.append(str(gt))
-        gt_mode_values.append(mode)
+        dataset_values.append(mode)
         n_case_values.append(n_cases)
 
-    frame["GT Mode"] = gt_mode_values
+    frame["Dataset"] = dataset_values
     frame["n_cases"] = n_case_values
     frame["Actual Changepoints for Log"] = actual_values
     frame.to_csv(csv_path, index=False)
@@ -233,19 +347,14 @@ def evaluate_cps(detected: Iterable[int], ground_truth: Iterable[int], tolerance
     }
 
 
-def evaluate_results_csv(csv_path: str, gt_mode: str = "samira", tol: Optional[int] = None, cp_col: Optional[str] = None) -> Dict[str, float]:
+def evaluate_results_csv(csv_path: str, tol: Optional[int] = None) -> Dict[str, float]:
     frame = pd.read_csv(csv_path)
     frame = frame[~frame["Log"].astype(str).str.startswith("===")].copy().reset_index(drop=True)
 
-    if cp_col is None:
-        for candidate in ["Detected Changepoints", "Duration CPs", "Routing CPs", "Combined CPs"]:
-            if candidate in frame.columns:
-                cp_col = candidate
-                break
-    if cp_col is None or cp_col not in frame.columns:
+    cp_col = "Detected Changepoints"
+    if cp_col not in frame.columns:
         raise ValueError(f"No changepoint column found in {csv_path}")
 
-    gt_func = GT_MODES[gt_mode]
     total_tp = total_fp = total_fn = 0
     rows: List[Dict[str, object]] = []
 
@@ -265,8 +374,10 @@ def evaluate_results_csv(csv_path: str, gt_mode: str = "samira", tol: Optional[i
             n_cases = _n_cases_from_name(file_name)
             if n_cases is None:
                 continue
-            row_gt_mode = str(row.get("GT Mode", gt_mode)).lower().strip()
-            gt_resolver = GT_MODES.get(row_gt_mode, gt_func)
+            row_dataset = str(row.get("Dataset", "")).lower().strip()
+            gt_resolver = GT_RESOLVERS.get(row_dataset)
+            if gt_resolver is None:
+                continue
             ground_truth = gt_resolver(n_cases)
 
         if n_cases is None:
@@ -309,24 +420,20 @@ def evaluate_results_csv(csv_path: str, gt_mode: str = "samira", tol: Optional[i
 
 def run_experiments(
     out_csv: str,
-    drift_types: Iterable[str],
     files: Optional[List[str]] = None,
     params: Optional[Dict] = None,
-    gt_mode: str = "samira",
     tol: Optional[int] = None,
     quiet: bool = False,
     skip_eval: bool = False,
 ) -> str:
-    from main import run_batch
-
     files = files or _collect_target_files(DATASETS_DIR)
     if not files:
         raise ValueError(f"No supported dataset files found in: {DATASETS_DIR}")
 
-    csv_path = run_batch(files, out_csv, drift_types, params=params or {}, quiet=quiet)
+    csv_path = _run_batch_local(files, out_csv, ["routing"], params=params or {}, quiet=quiet)
     csv_path = _augment_results_with_ground_truth(csv_path, files)
     if not skip_eval:
-        evaluate_results_csv(csv_path, gt_mode=gt_mode, tol=tol)
+        evaluate_results_csv(csv_path, tol=tol)
     return csv_path
 
 
@@ -338,6 +445,11 @@ def main() -> None:
         "--out",
         default=None,
         help="Output CSV path. Default: output/my_results.csv",
+    )
+    parser.add_argument(
+        "--excel",
+        default=None,
+        help="Output Excel path. Default: output/my_results.xlsx",
     )
     parser.add_argument(
         "--tol",
@@ -358,18 +470,21 @@ def main() -> None:
     args = parser.parse_args()
 
     default_out = os.path.join(SCRIPT_DIR, "output", "my_results.csv")
+    default_excel = os.path.join(SCRIPT_DIR, "output", "my_results.xlsx")
     out_csv = args.out or default_out
+    out_excel = args.excel or default_excel
     os.makedirs(os.path.dirname(os.path.abspath(out_csv)), exist_ok=True)
 
     csv_path = run_experiments(
         out_csv=out_csv,
-        drift_types=["routing"],
         params={},
         tol=args.tol,
         quiet=args.quiet,
         skip_eval=args.no_eval,
     )
+    excel_path = _export_requested_excel(csv_path, out_excel)
     print(f"Finished. Results CSV: {csv_path}")
+    print(f"Requested Excel: {excel_path}")
     if not args.no_eval:
         print(f"Evaluation CSV: {os.path.splitext(csv_path)[0]}_eval.csv")
 
