@@ -1,0 +1,4 @@
+Algorithm,Log Source,Log,Drift Types,Detected Changepoints,Actual Changepoints for Log,Duration (Seconds),Duration (hh:mm:ss),Parameter Settings
+CVDriftSuggested,dataset_1000cases_10min_ABD.xes,dataset_1000cases_10min_ABD.xes,duration,"[370, 750]",[],3.369,00:00:03,{}
+CVDriftSuggested,dataset_1000cases_10min_ABD_noisy_10%.xes,dataset_1000cases_10min_ABD_noisy_10%.xes,duration,"[304, 722]",[],4.275,00:00:04,{}
+CVDriftSuggested,dataset_1000cases_10min_ABD_noisy_20%.xes,dataset_1000cases_10min_ABD_noisy_20%.xes,duration,"[300, 722]",[],4.818,00:00:04,{}

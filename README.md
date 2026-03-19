@@ -1,23 +1,24 @@
 # CVDrift 
 
-Repository is now organized in the requested style:
+## Install
 
-```text
-project/
-│
-├── main.py
-├── cvdrift/
-│   ├── preprocessing.py
-│   ├── window_selection.py
-│   ├── drift_detection.py
-│
-├── experiments/
-│   └── run_experiments.py
-│
-├── datasets/
-│
-├── requirements.txt
-├── README.md
+Clone the project and initialize submodules first:
+
+```bash
+git clone https://github.com/khraiwesh/CVDrift.git
+cd CVDrift
+git submodule update --init --recursive
+```
+Create environment:
+
+```bash
+python -m venv venv
+```
+
+Then install dependencies:
+
+```bash
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -40,8 +41,23 @@ Folder batch:
 python main.py --dir "path/to/folder" --drift duration routing arrival --out output/batch.csv --gt-mode ceravolo
 ```
 
-## Install
 
-```bash
-pip install -r requirements.txt
+Repository is now organized in the requested style:
+
+```text
+project/
+│
+├── main.py
+├── cvdrift/
+│   ├── preprocessing.py
+│   ├── window_selection.py
+│   ├── drift_detection.py
+│
+├── experiments/
+│   └── run_experiments.py
+│
+├── datasets/
+│
+├── requirements.txt
+├── README.md
 ```

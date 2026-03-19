@@ -12,7 +12,7 @@ from typing import Dict, Iterable, List
 from cvdrift.pipeline.io import get_event_log
 from cvdrift.drift_detection import extract_cps, run_pipeline
 from cvdrift.preprocessing import DEFAULT_PARAMS, load_log
-from experiments.run_experiments import GT_MODES, evaluate_results_csv
+from experiments.Experiment1.run_experiments_CVDrift import evaluate_results_csv
 
 ALGORITHM_NAME = "CVDriftSuggested"
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
