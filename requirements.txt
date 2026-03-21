@@ -4,3 +4,11 @@ matplotlib
 ruptures
 python-dateutil
 pm4py
+openpyxl
+plotly
+scipy
+seaborn
+statsmodels
+tqdm
+ocpa
+pulp
