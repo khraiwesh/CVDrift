@@ -13,13 +13,13 @@ authors:
     email: samira.khraiwesh@tum.de
     affiliation: Technical University Of Munich
     orcid: 'https://orcid.org/0009-0005-3515-3415'
+  - given-names: Dogukan
+    family-names: Dagtekin
+    email: dogukan.dagtekin@tum.de
+    affiliation: Technical University Of Munich
   - given-names: Luise
     family-names: Pufahl
     email: luise.pufahl@tum.de
     affiliation: Technical University Of Munich
     orcid: 'https://orcid.org/0000-0002-5182-2587'
-  - given-names: Dogukan
-    family-names: Dagtekin
-    email: dogukan.dagtekin@tum.de
-    affiliation: Technical University Of Munich
 repository-code: 'https://github.com/khraiwesh/CVDrift'
